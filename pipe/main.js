@@ -45,13 +45,13 @@ const doAnalysis = async () => {
   const severityLevel = process.env.SEVERITY_LEVEL || "Medium"; // Default to "Medium" if not set
   const warningOnly = process.env.WARNING_ONLY === "true";
 
-  // Change to the specific directory using the CI_PROJECT_DIR environment variable
-  const specificDirectory = process.env.CI_PROJECT_DIR; // Get the directory path from the environment variable
+  // Change to the specific directory using the GITHUB_WORKSPACE environment variable
+  const specificDirectory = process.env.GITHUB_WORKSPACE; // Get the directory path from the environment variable
   if (specificDirectory) {
     console.log("Changing working directory to:", specificDirectory);
     process.chdir(specificDirectory);
   } else {
-    console.error("CI_PROJECT_DIR environment variable is not set.");
+    console.error("GITHUB_WORKSPACE environment variable is not set.");
     process.exit(1); // Exit with a non-zero status code if the environment variable is not set
   }
 
